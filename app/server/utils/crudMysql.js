@@ -21,7 +21,7 @@ export default {
 	  * @returns {number} - ID del nuevo registro
 	  */
 	createUser: async (values) => {
-		const query = 'INSERT INTO ?? (full_name, email, pass, birthdate, gender) VALUES (?, ?, ?, ?, ?)';
+		const query = 'INSERT INTO ?? (??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?)';
 		const [result] = await connection.query(query, values);
 		return result;
 	},
