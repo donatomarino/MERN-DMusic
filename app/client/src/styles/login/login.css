@@ -10,7 +10,7 @@ body {
 
 /* ----- Login Page ----- */
 .Login__Form {
-    height: 650px;
+    height: 670px;
     width: 900px;
     text-align: center;
     padding: 50px;
@@ -155,32 +155,59 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 15px;
 }
 
-/* .Login__InputContainer--RegisterDos{
-    margin-top:70px;
-} */
-
-.Login__InputContainer--Register label {
-    margin-top: 20px;
+.RegisterPage__Container{
+    display: flex;
+    justify-content: left;
+    position: relative;
+    left: 155px;
+    top: 15px;
+    margin-bottom: 50px;
 }
+
+.RegisterPage__Container--Emotion:hover {
+    cursor: pointer;
+}
+
+.RegisterPage__Options {
+    margin-left: 6px;
+    font-size: 16px;
+}
+
+.RegisterPage__Options--Routes {
+    color: #9b9b9b;
+}
+
+.RegisterPage__Options--Description {
+    margin-left: 5px;
+} 
 
 .Login__Button--togglePasswordVisibility--Register {
-    top: 75%;
+    top: 59%;
+    right: 34%;
 }
 
 .Login__RadioContainer {
     display: flex; 
     align-items: center;  
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+}
+
+.Login__FieldContainer--Radio > label {
+    margin: 0px;
 }
 
 .Login__RadioOption {
     display: flex;  
     align-items: space-between;  
     gap: 10px;
+}
+
+.Login__RadioOption label {
+    margin-top: 20px;
 }
 
 .Login__RadioOption input[type="radio"] {
@@ -203,4 +230,8 @@ body {
     color: white;
     font-size: 18px;
     text-decoration: underline;
+}
+
+.Register__Error-Confirma{
+    margin-top:0px;
 }

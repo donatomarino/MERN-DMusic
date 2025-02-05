@@ -5,6 +5,7 @@ import Button from "../../components/LoginComponents/Button";
 import { useNavigation } from "../../utils/hooks/useNavigation";
 import { useParams } from "react-router-dom";
 import "../../styles/login/login.css";
+import FormField from "../../components/LoginComponents/FormField";
 
 export const ConfirmRecoveryPage = () => {
     const navigate = useNavigation();
@@ -44,10 +45,8 @@ export const ConfirmRecoveryPage = () => {
             </div>
 
             <div className='Login__InputContainer--ChangePass'>
-                <div className='Login__FieldContainer'>
-                    <Label htmlFor={'email'}>Escribe la nueva contraseña</Label>
-
-                    <Input
+                    <FormField
+                        label={'Escribe la nueva contraseña'}
                         type={showPassword ? 'text' : 'password'}
                         id={'password'}
                         placeholder={'Introduces la nueva contraseña'}
@@ -62,14 +61,11 @@ export const ConfirmRecoveryPage = () => {
                     >
                         <img src={showPassword ? '/images/ojo.png' : '/images/ojo2.png'} className="Login__InputContainer--icon" alt="Toggle visibility" />
                     </Button>
-                </div>
             </div>
 
             <div className='Login__InputContainer--ChangePass'>
-                <div className='Login__FieldContainer'>
-                    <Label htmlFor={'email'}>Confirma la contraseña</Label>
-
-                    <Input
+                    <FormField
+                        label={'Confirma la contraseña'}
                         type={showPassword ? 'text' : 'password'}
                         id={'confirmedPassword'}
                         placeholder={'Confirma la contraseña'}
@@ -77,7 +73,6 @@ export const ConfirmRecoveryPage = () => {
                         onChange={(e) => setConfirmPass(e.target.value)}
                         required
                     />
-                </div>
             </div>
 
             {message && <div className="Login__Error-Confirma">{message}</div>}

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Input from '../../components/GeneralComponents/Input';
-import Label from '../../components/GeneralComponents/Label';
 import Button from '../../components/LoginComponents/Button';
+import FormField from '../../components/LoginComponents/FormField';
 import { useNavigation } from '../../utils/hooks/useNavigation';
 import '../../styles/login/login.css';
 
@@ -52,10 +51,8 @@ export const LoginPage = () => {
             </div>
 
             <div className='Login__InputContainer'>
-                <div className='Login__FieldContainer'>
-                    <Label htmlFor={'email'}>Correo electrónico</Label>
-
-                    <Input
+                    <FormField
+                        label={'Correo electrónico'}
                         type={'email'}
                         id={'email'}
                         placeholder={'Introduces tu correo electrónico'}
@@ -64,14 +61,11 @@ export const LoginPage = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                </div>
             </div>
 
             <div className='Login__InputContainer'>
-                <div className='Login__FieldContainer'>
-                    <Label htmlFor={'password'}>Password</Label>
-
-                    <Input
+                    <FormField
+                        label={'Password'}
                         type={showPassword ? 'text' : 'password'}
                         id={'password'}
                         placeholder={'Introduces tu contraseña'}
@@ -88,7 +82,6 @@ export const LoginPage = () => {
                         <img src={showPassword ? '/images/ojo.png' : '/images/ojo2.png'} className="Login__InputContainer--icon" alt="Toggle visibility" />
                     </Button>
                 </div>
-            </div>
 
             {isMatch &&
                 <div className='Login__Error-Confirma'>
@@ -108,8 +101,8 @@ export const LoginPage = () => {
 
             <div>
                 <span className='Login__Span'>¿No tienes cuenta?</span>
-                <Button className='Login__Button--Routes' onClick={() => navigate('/user/register')}>
-                    Regístrate en DMusic
+                <Button className='Login__Button--Routes' onClick={() => { navigate('/user/register')}}>
+                Regístrate en DMusic
                 </Button>
             </div>
 

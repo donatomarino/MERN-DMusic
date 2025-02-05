@@ -1,10 +1,8 @@
 import { useState, useContext } from "react";
-import Label from "../../../components/GeneralComponents/Label";
-import Input from "../../../components/GeneralComponents/Input";
 import Button from "../../../components/LoginComponents/Button";
+import FormField from "../../../components/LoginComponents/FormField";
 import { useNavigation } from "../../../utils/hooks/useNavigation";
 import { RegisterContext } from "../../../utils/contexto/RegisterContext";
-import { MessageContext } from "../../../utils/contexto/MessageContext";
 import { DataContext } from "../../../utils/contexto/DataContext";
 import "../../../styles/login/login.css";
 
@@ -13,19 +11,18 @@ export const FirstRegister = () => {
     const { datos, toggleDatos } = useContext(DataContext);
     const [confirmPass, setConfirmPass] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const [isRegistred, setIsRegistred] = useState(false);
-    const { toggleMessage } = useContext(MessageContext);
-    const { page, nextPage } = useContext(RegisterContext);
+    const { nextPage } = useContext(RegisterContext);
+    const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (datos.password !== confirmPass) {
-            toggleMessage('Las contraseñas no coinciden');
+            setMessage('Las contraseñas no coinciden');
             return;
         } else {
-            nextPage(1);
-            toggleMessage('');
+            nextPage(1)
+            setMessage('');
         }
     }
 
@@ -36,57 +33,65 @@ export const FirstRegister = () => {
                 <h2 id='Login_HeaderContainer--Description'>Únete ahora y disfruta de todo el contenido</h2>
             </div>
 
+            <div className="RegisterPage__Container">
+                <div className="RegisterPage__Container--Emotion" onClick={() => navigate('/')}>◀️</div>
+                <div className="RegisterPage__Options">
+                    <div className="RegisterPage__Options--Routes">Paso 1 de 2</div>
+                    <div className="RegisterPage__Options--Description">Crea usuario</div>
+                </div>
+            </div>
+
             <div className='Login__InputContainer--Register'>
+                <FormField
+                    label={'Nombre completo'}
+                    type={'text'}
+                    id={'full_name'}
+                    placeholder={'Introduce tu nombre completo'}
+                    value={datos.full_name}
+                    onChange={(e) => toggleDatos({ ...datos, full_name: e.target.value })}
+                    required
+                />
+            </div>
 
-                <div className='Login__FieldContainer'>
-                    <Label htmlFor={'full_name'}>Nombre completo</Label>
+            <div className='Login__InputContainer--Register'>
+                <FormField
+                    label='Contraseña'
+                    type={showPassword ? 'text' : 'password'}
+                    id={'password'}
+                    placeholder={'Introduce tu contraseña'}
+                    value={datos.password}
+                    onChange={(e) => toggleDatos({ ...datos, password: e.target.value })}
+                    required
+                />
 
-                    <Input
-                        type={'text'}
-                        id={'full_name'}
-                        placeholder={'Introduce tu nombre completo'}
-                        value={datos.full_name}
-                        onChange={(e) => toggleDatos({ ...datos, full_name: e.target.value })}
-                        required
-                    />
-                </div>
+                <Button
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="Login__Button--togglePasswordVisibility--Register"
+                >
+                    <img src={showPassword ? '/images/ojo.png' : '/images/ojo2.png'} className="Login__InputContainer--icon" alt="Toggle visibility" />
+                </Button>
+            </div>
 
-                <div className='Login__FieldContainer'>
-                    <Label htmlFor={'password'}>Contraseña</Label>
-
-                    <Input
-                        type={showPassword ? 'text' : 'password'}
-                        id={'password'}
-                        placeholder={'Introduce tu contraseña'}
-                        value={datos.password}
-                        onChange={(e) => toggleDatos({ ...datos, password: e.target.value })}
-                        required
-                    />
-
-                    <Button
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="Login__Button--togglePasswordVisibility--Register"
-                    >
-                        <img src={showPassword ? '/images/ojo.png' : '/images/ojo2.png'} className="Login__InputContainer--icon" alt="Toggle visibility" />
-                    </Button>
-                </div>
-
-                <div className='Login__FieldContainer'>
-                    <Label htmlFor={'confirm-password'}>Confirma contraseña</Label>
-
-                    <Input
-                        type={'password'}
-                        id={'confirm-password'}
-                        placeholder={'Introduce tu contraseña'}
-                        value={confirmPass}
-                        onChange={(e) => setConfirmPass(e.target.value)}
-                        required
-                    />
-                </div>
+            <div className='Login__InputContainer--Register'>
+                <FormField
+                    label={'Confirma contraseña'}
+                    type={'password'}
+                    id={'confirm-password'}
+                    placeholder={'Introduce tu contraseña'}
+                    value={confirmPass}
+                    onChange={(e) => setConfirmPass(e.target.value)}
+                    required
+                />
 
                 <div>
                     <Button type='submit' className='Login__Button--Submit'>Siguiente</Button>
                 </div>
+
+                {message &&
+                    <div className='Login__Error-Confirma Register__Error-Confirma'>
+                        <p className="Login__Error-Confirma">{message}</p>
+                    </div>
+                }
             </div>
         </form>
     )

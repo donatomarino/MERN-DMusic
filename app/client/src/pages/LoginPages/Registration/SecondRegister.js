@@ -2,19 +2,19 @@ import { useState, useContext } from "react";
 import Label from "../../../components/GeneralComponents/Label";
 import Input from "../../../components/GeneralComponents/Input";
 import Button from "../../../components/LoginComponents/Button";
-import { useNavigation } from "../../../utils/hooks/useNavigation";
 import { RegisterContext } from "../../../utils/contexto/RegisterContext";
 import Checkbox from "../../../components/LoginComponents/Checkbox";
-import { MessageContext } from "../../../utils/contexto/MessageContext";
 import { DataContext } from "../../../utils/contexto/DataContext";
+import { useNavigation } from "../../../utils/hooks/useNavigation";
+import FormField from "../../../components/LoginComponents/FormField";
 import "../../../styles/login/login.css";
 
 export const SecondRegister = () => {
-    const navigate = useNavigation();
-    const {datos, toggleDatos} = useContext(DataContext);
+    const { datos, toggleDatos } = useContext(DataContext);
     const [isRegistred, setIsRegistred] = useState(false);
-    const [toggleMessage] = useContext(MessageContext);
-    const { page, nextPage } = useContext(RegisterContext);
+    const { nextPage } = useContext(RegisterContext);
+    const [message, setMessage] = useState('');
+    const navigate = useNavigation();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,14 +37,13 @@ export const SecondRegister = () => {
             })
 
             if (response.ok) {
-                toggleMessage("Usuario registrado correctamente.")
+                setMessage("Usuario registrado correctamente.")
                 setIsRegistred(!isRegistred)
-                nextPage(2)
             } else {
-                toggleMessage("El correo electrónico ya está registrado.")
+                setMessage("El correo electrónico ya está registrado.")
             }
         } catch (e) {
-            toggleMessage("Ha habido un problema en el registro: ", e);
+            setMessage("Ha habido un problema en el registro: ", e);
         }
     }
 
@@ -55,37 +54,42 @@ export const SecondRegister = () => {
                 <h2 id='Login_HeaderContainer--Description'>Únete ahora y disfruta de todo el contenido</h2>
             </div>
 
+            <div className="RegisterPage__Container">
+                <div className="RegisterPage__Container--Emotion" onClick={() => { nextPage(0) }}>◀️</div>
+                <div className="RegisterPage__Options">
+                    <div className="RegisterPage__Options--Routes">Paso 2 de 2</div>
+                    <div className="RegisterPage__Options--Description">Crea usuario</div>
+                </div>
+            </div>
+
+            <div className='Login__InputContainer--Register'>
+                <FormField
+                    label={'Dirección de correo electrónico'}
+                    type={'email'}
+                    id={'email'}
+                    placeholder={'Introduce tu correo electrónico'}
+                    value={datos.email}
+                    onChange={(e) => toggleDatos({ ...datos, email: e.target.value })}
+                    required
+                />
+            </div>
+
+            <div className='Login__InputContainer--Register'>
+                <FormField
+                    label={'Fecha de nacimiento'}
+                    type={'date'}
+                    id={'birthdate'}
+                    placeholder={'Introduce tu fecha de nacimiento'}
+                    value={datos.birthdate}
+                    onChange={(e) => toggleDatos({ ...datos, birthdate: e.target.value })}
+                    required
+                />
+            </div>
+
             <div className='Login__InputContainer--Register'>
 
-                <div className='Login__FieldContainer'>
-                    <Label htmlFor={'email'}>Dirección de correo electrónico</Label>
-
-                    <Input
-                        type={'email'}
-                        id={'email'}
-                        placeholder={'Introduce tu correo electrónico'}
-                        value={datos.email}
-                        onChange={(e) => toggleDatos({ ...datos, email: e.target.value })}
-                        required
-                    />
-                </div>
-
-                <div className='Login__FieldContainer'>
-                    <Label htmlFor={'birthdate'}>Fecha de nacimiento</Label>
-
-                    <Input
-                        type={'date'}
-                        id={'birthdate'}
-                        placeholder={'Introduce tu fecha de nacimiento'}
-                        value={datos.birthdate}
-                        onChange={(e) => toggleDatos({ ...datos, birthdate: e.target.value })}
-                        required
-                    />
-                </div>
-
-                <div className='Login__FieldContainer'>
+                <div className='Login__FieldContainer Login__FieldContainer--Radio'>
                     <Label htmlFor={'gender'}>Genero</Label>
-
                     <div className="Login__RadioContainer">
                         <div className="Login__RadioOption">
                             <Input
@@ -96,46 +100,54 @@ export const SecondRegister = () => {
                                 checked={datos.gender === "man"}
                                 onChange={() => toggleDatos({ ...datos, gender: "man" })}
                             />
-
                             <Label htmlFor="man">Hombre</Label>
                         </div>
 
                         <div className="Login__RadioOption">
                             <Input
                                 type="radio"
-                                id="man"
+                                id="woman"
                                 name="gender"
-                                value="man"
-                                checked={datos.gender === "man"}
+                                value="woman"
+                                checked={datos.gender === "woman"}
                                 onChange={() => toggleDatos({ ...datos, gender: "woman" })}
                             />
-
                             <Label htmlFor="woman">Mujer</Label>
                         </div>
 
                         <div className="Login__RadioOption">
                             <Input
                                 type="radio"
-                                id="man"
+                                id="others"
                                 name="gender"
-                                value="man"
-                                checked={datos.gender === "man"}
+                                value="others"
+                                checked={datos.gender === "others"}
                                 onChange={() => toggleDatos({ ...datos, gender: "others" })}
                             />
-
                             <Label htmlFor="others">Otros</Label>
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div className='Login__InputContainer--Register'>
+                <Checkbox />
+            </div>
+
+            {isRegistred ?
                 <div>
-                    <Checkbox />
-                </div>
-
+                    <Button type='submit' className='Login__Button--Submit' onClick={() => navigate('/home')}>Empezamos!</Button>
+                </div> :
                 <div>
                     <Button type='submit' className='Login__Button--Submit'>Regístrate</Button>
                 </div>
-            </div>
+            }
+
+            {message &&
+                <div className='Login__Error-Confirma Register__Error-Confirma'>
+                    <p className="Login__Error-Confirma">{message}</p>
+                </div>
+            }
         </form>
     )
 }

@@ -6,7 +6,7 @@ import { ConfirmRecoveryPage } from './pages/LoginPages/ConfirmRecoveryPage.js';
 import { RegisterPage } from './pages/LoginPages/Registration/RegisterPage.js';
 import { RegisterProvider } from './utils/contexto/RegisterContext.js';
 import { MessageProvider } from "./utils/contexto/MessageContext.js";
-import DataContext, { DataProvider } from './utils/contexto/DataContext.js'
+import { DataProvider } from './utils/contexto/DataContext.js'
 import './styles/general/General.css';
 
 function App() {

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import Label from "../../components/GeneralComponents/Label";
-import Input from "../../components/GeneralComponents/Input";
 import Button from "../../components/LoginComponents/Button";
 import { useNavigation } from "../../utils/hooks/useNavigation";
 import "../../styles/login/login.css";
+import FormField from "../../components/LoginComponents/FormField";
 
 export const RecoveryPassPage = () => {
     const navigate = useNavigation();
@@ -41,10 +40,8 @@ export const RecoveryPassPage = () => {
             </div>
 
             <div className='Login__InputContainer--Recovery'>
-                <div className='Login__FieldContainer'>
-                    <Label htmlFor={'email'}>Escribe la dirección de correo electrónico vinculado a tu cuenta</Label>
-
-                    <Input
+                    <FormField
+                        label={'Escribe la dirección de correo electrónico vinculado a tu cuenta'}
                         type={'email'}
                         id={'email'}
                         placeholder={'Introduces tu correo electrónico'}
@@ -53,7 +50,6 @@ export const RecoveryPassPage = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                </div>
             </div>
 
             {message && 

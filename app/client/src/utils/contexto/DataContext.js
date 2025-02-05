@@ -6,11 +6,11 @@ export const DataContext = createContext();
 // Creamos el proveedor del contexto
 export const DataProvider = ({ children }) => {
   const [datos, setDatos] = useState({
-    full_name: null,
-    email: null,
-    password: null,
-    birthdate: null,
-    gender: null
+    full_name: '',
+    email: '',
+    password: '',
+    birthdate: '',
+    gender: ''
   }); // Estado inicial
 
   // Función para cambiar el tipo de vista
