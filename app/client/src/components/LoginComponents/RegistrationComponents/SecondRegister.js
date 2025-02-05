@@ -1,13 +1,13 @@
 import { useState, useContext } from "react";
-import Label from "../../../components/GeneralComponents/Label";
-import Input from "../../../components/GeneralComponents/Input";
-import Button from "../../../components/LoginComponents/Button";
+import Label from "../../GeneralComponents/Label";
+import Input from "../../GeneralComponents/Input";
+import Button from "../Button";
 import { RegisterContext } from "../../../utils/contexto/RegisterContext";
-import Checkbox from "../../../components/LoginComponents/Checkbox";
+import Checkbox from "../Checkbox";
 import { DataContext } from "../../../utils/contexto/DataContext";
 import { useNavigation } from "../../../utils/hooks/useNavigation";
-import FormField from "../../../components/LoginComponents/FormField";
-import "../../../styles/login/login.css";
+import FormField from "../FormField";
+import "../../../styles/login/login.css"
 
 export const SecondRegister = () => {
     const { datos, toggleDatos } = useContext(DataContext);

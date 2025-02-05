@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
-import Button from "../../../components/LoginComponents/Button";
-import FormField from "../../../components/LoginComponents/FormField";
+import Button from "../Button";
+import FormField from "../FormField";
 import { useNavigation } from "../../../utils/hooks/useNavigation";
 import { RegisterContext } from "../../../utils/contexto/RegisterContext";
 import { DataContext } from "../../../utils/contexto/DataContext";
-import "../../../styles/login/login.css";
+import "../../../styles/login/login.css"
 
 export const FirstRegister = () => {
     const navigate = useNavigation();

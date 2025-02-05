@@ -1,7 +1,9 @@
-import React from 'react';
 import Input from '../GeneralComponents/Input';
+import { LopdContext } from '../../utils/contexto/LopdContext';
+import { useContext } from 'react';
 
 export default function Checkbox() {
+    const { acceptLopd, toggleLopd } = useContext(LopdContext);
 
     return (
         <div className="Checkbox__Container">
@@ -10,10 +12,10 @@ export default function Checkbox() {
                 id="lopd" 
                 name="lopd" 
                 required 
-                // checked={acceptLopd}
-                // onChange={toggleLopd}
+                checked={acceptLopd}
+                onChange={toggleLopd}
             /> 
-            <a href="/lopd" className="Checkbox__Container--link">
+            <a href="/user/lopd" className="Checkbox__Container--link">
                 Acepto términos y condiciones
             </a>
         </div>
