@@ -1,0 +1,101 @@
+.UserData__Container {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.UserData__Header {
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.UserData__Header--h2 {
+    font-size: 24px;
+}
+
+.UserData__Header--emoji{
+    position: relative;
+    top: 5px;
+}
+
+.UserData__Content {
+    min-height: 450px;
+    max-width: 1000px;
+    min-width: 500px;
+    max-height: 600px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: rgba(141, 141, 156, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-gap: 15px;
+    align-items: center; 
+    justify-items: center; 
+}
+
+.UserData__Content--Item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    width: 100%;
+    text-align: center;
+}
+
+.UserData__Content--div {
+    background-color: #393939;
+    width: 100%;
+    max-width: 300px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; 
+    padding: 0 40px; 
+}
+
+.UserData__Content--edit {
+    position: absolute;
+    right: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.UserData__Content--edit:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.UserData__Content--Item Label {
+    font-weight: bolder;
+    margin-bottom: 5px;
+    color: #a7a7a7;
+    text-align: center;
+}
+
+
+.UserData__Button {
+    grid-column: span 2; 
+    margin-top: 20px;
+    width: 500px;
+    background-color: #044396;
+    color: white;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.UserData__Button:hover {
+    background-color: #022d66;
+}
