@@ -1,0 +1,34 @@
+/.DS_Store
+client/.DS_Store
+server/.DS_Store
+server/src/.DS_Store
+server/.env
+server/src/scripts
+
+# Ignorar builds
+client/build/
+server/dist/
+
+# dependencies
+client/node_modules
+server/node_modules
+/.pnp
+.pnp.js
+
+# music
+server/playlist
+server/src/music
+
+# documentation & tests
+server/cypress
+server/docs
+server/JMeter
+/server/cypress.config.js
+server/jsdoc.json
+client/coverage
+
+# misc
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
