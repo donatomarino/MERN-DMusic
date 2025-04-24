@@ -32,7 +32,6 @@ export const ContentHome = () => {
 
             <div className="ContentHome__ContainerCard">
                 {artists
-                    .sort((a, b) => b.score - a.score)
                     .slice(0, 5)
                     .map((e) => {
                         return (

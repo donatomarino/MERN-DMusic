@@ -33,8 +33,8 @@ export default {
      */
     getSongs: async (req, res) => {
         try {
-            //SELECT a.full_name, s.title, s.score, s.image FROM Songs s INNER JOIN Artists a ON a.id_artist = s.id_artist;
-            const values = ['a.full_name', 's.id_song', 's.title', 's.score', 's.image', 's.url', process.env.TAB_SONGS, 's', process.env.TAB_ARTISTS, 'a', 'a.id_artist', 's.id_artist'];
+            //SELECT a.full_name, s.title, s.image FROM Songs s INNER JOIN Artists a ON a.id_artist = s.id_artist;
+            const values = ['a.full_name', 's.id_song', 's.title', 's.image', 's.url', process.env.TAB_SONGS, 's', process.env.TAB_ARTISTS, 'a', 'a.id_artist', 's.id_artist'];
             const response = await genericCrudMySQL.getSongs(values);
 
             response.length === 0 ? res.status(400).json({ message: 'No hay canciones en la base de datos.' }) : res.status(200).json(response);
@@ -206,6 +206,7 @@ export default {
             });
 
             const url = `https://storage.googleapis.com/${bucket.name}/${fileUploaded.name}`;
+            console.log(url);
 
             // INSERT INTO Songs (title, genre, duration, url, image, id_artist);
             const values = [process.env.TAB_SONGS, 'title', 'genre', 'duration', 'url', 'image', 'id_artist', title, genre, duration, url, image, id_artist];
