@@ -1,4 +1,7 @@
 import genericCrudMySQL from "../../models/crudMySql/generic.crud.js";
+import {bucket} from "../../firebase/config.js";
+import fs from 'fs';
+import path from "path";
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -184,6 +187,38 @@ export default {
             res.status(200).json({ message: 'Cancion eliminada correctamente.' });
         } catch (e) {
             res.status(500).json({ message: 'Error inesperado al eliminar la cancion: ', e });
+        }
+    },
+    uploadSong: async(req, res) => {
+        try {
+            const file = req.file;
+            const {title, genre, duration, image, id_artist, name_artist} = req.body;
+            
+            // const route = path.join(__dirname, '../../uploads', `${name_artist}_${title}_${id_artist}.mp3`);
+            const route = `${name_artist}_${title}_${id_artist}.mp3`;
+            
+            const [fileUploaded] = await bucket.upload(file.path, {
+                destination: route,
+                public: true,
+                metadata: {
+                    contentType: file.mimetype,
+                }
+            });
+
+            const url = `https://storage.googleapis.com/${bucket.name}/${fileUploaded.name}`;
+
+            // INSERT INTO Songs (title, genre, duration, url, image, id_artist);
+            const values = [process.env.TAB_SONGS, 'title', 'genre', 'duration', 'url', 'image', 'id_artist', title, genre, duration, url, image, id_artist];
+            await genericCrudMySQL.uploadSong(values);
+
+            fs.unlinkSync(file.path); // Eliminar el archivo local después de subirlo a Firebase
+
+            res.status(200).json({
+                message: 'Cancion subida correctamente.',
+                url
+            });
+        } catch(e) {
+            res.status(500).json({ message: 'Error inesperado al subir la cancion: ', e });
         }
     }
 

@@ -25,6 +25,7 @@ server/docs
 server/JMeter
 /server/cypress.config.js
 server/jsdoc.json
+server/src/firebase
 client/coverage
 
 # misc
