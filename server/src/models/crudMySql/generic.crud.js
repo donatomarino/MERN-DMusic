@@ -24,8 +24,8 @@ export default {
      * @returns {Array}
      */
     getSongs: async (values) => {
-        // SELECT a.full_name, s.title, s.score, s.image, s.url FROM Songs s INNER JOIN Artists a ON a.id_artist = s.id_artist;
-        const query = 'SELECT ??, ??, ??, ??, ??, ?? FROM ?? AS ?? INNER JOIN ?? AS ?? ON ?? = ??';
+        // SELECT a.full_name, s.title, s.image, s.url FROM Songs s INNER JOIN Artists a ON a.id_artist = s.id_artist;
+        const query = 'SELECT ??, ??, ??, ??, ?? FROM ?? AS ?? INNER JOIN ?? AS ?? ON ?? = ??';
         const [result] = await connection.query(query, [...values])
 
         return result;
@@ -101,7 +101,7 @@ export default {
      * @param {Array} values - Nombre tabla y valores para añadir canción a favoritos.
      * @returns {Array}
      */
-    addFavoritsSongs: async(values) => {
+    addFavoritsSongs: async (values) => {
         // INSERT INTO users_songs VALUES(1, 1);
         const query = 'INSERT INTO ?? VALUES(?, ?)';
         const result = await connection.query(query, [...values]);
@@ -115,7 +115,7 @@ export default {
      * @param {Array} values - Datos de usuario e cancion para obtener la canción.
      * @returns {Array}
      */
-    getSong: async(values) => {
+    getSong: async (values) => {
         // SELECT * FROM users_songs WHERE id_user = 1 && id_song = 1;
         const query = 'SELECT * FROM ?? WHERE ?? = ? && ?? = ?';
         const result = await connection.query(query, [...values]);
@@ -129,11 +129,18 @@ export default {
      * @param {Array} values - Nombre tabla y campos para buscar la canción a eliminar.
      * @returns {Array}
      */
-    deleteFavoritsSongs: async(values) => {
+    deleteFavoritsSongs: async (values) => {
         // DELETE FROM users_songs WHERE id_user = 1 AND id_song = 1;
         const query = 'DELETE FROM ?? WHERE ?? = ? AND ?? = ?';
         const result = await connection.query(query, [...values]);
 
+        return result;
+    },
+    uploadSong: async (values) => {
+        // INSERT INTO Songs (title, genre, duration, url, image, id_artist)
+        const query = 'INSERT INTO ?? (??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?)';
+        const result = await connection.query(query, [...values]);
+        
         return result;
     }
 }

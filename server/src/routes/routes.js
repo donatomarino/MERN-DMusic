@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import generic from '../controllers/mysql/generics.controllers.js';
+import multer from 'multer';
 import users from '../controllers/mysql/users.controllers.js';
 import mongo from '../controllers/mongo/generics.controllers.js';
 
 const router = Router();
+const upload = multer({ dest: 'uploads/' });
 
 //---- MYSQL
 router.post('/dmusic/login', users.login);
@@ -20,7 +22,8 @@ router.post('/dmusic/play-artist', generic.playArtist);
 router.post('/dmusic/play-library', generic.playLibrary);
 router.post('/dmusic/add-favoritesongs', generic.addFavoritsSongs);
 router.delete('/dmusic/delete-favoritesongs', generic.deleteFavoritsSongs);
-router.post('/dmusic/favoritesongs', generic.getFavoritsSongs)
+router.post('/dmusic/favoritesongs', generic.getFavoritsSongs);
+router.post('/dmusic/upload-song', upload.single("file"), generic.uploadSong);
 
 
 //---- MONGO DB

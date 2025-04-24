@@ -16,8 +16,8 @@ server/node_modules
 .pnp.js
 
 # music
-server/playlist
-server/src/music
+server/src/playlist
+server/uploads
 
 # documentation & tests
 server/cypress
@@ -25,6 +25,7 @@ server/docs
 server/JMeter
 /server/cypress.config.js
 server/jsdoc.json
+server/src/firebase/firebase-config.json
 client/coverage
 
 # misc

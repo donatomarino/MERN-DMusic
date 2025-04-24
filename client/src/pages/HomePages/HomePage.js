@@ -19,6 +19,15 @@ export const HomePage = () => {
         toggleComponent(2);
     }, []);
 
+    const statusView = {
+        2: <ContentHome />,
+        3: <Explore />,
+        4: <Trends />,
+        5: <Library />,
+        6: <UserData />,
+        7: <Search />,
+    }
+
     return (
         <div className="HomePage__Container">
             <div className="HomePage_Header">
@@ -31,12 +40,7 @@ export const HomePage = () => {
                 </div>
 
                 <div className="HomePage__Content">
-                    {component === 2 && <ContentHome />}
-                    {component === 3 && <Explore />}
-                    {component === 4 && <Trends />}
-                    {component === 5 && <Library />}
-                    {component === 6 && <UserData />}
-                    {component === 7 && <Search />}
+                    {statusView[component]}
                 </div>
             </div>
 

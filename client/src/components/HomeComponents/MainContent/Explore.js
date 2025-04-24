@@ -16,7 +16,6 @@ export const Explore = () => {
 
             <div className="Trends__ContainerCard">
                 {songs
-                    .sort((a, b) => b.score - a.score)
                     .map((e, i) => {
                         return (
                             <div className="ContentHome__Card Trends__Card" key={i}>
