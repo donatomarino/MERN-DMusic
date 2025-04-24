@@ -57,7 +57,7 @@ export const useLibrary = () => {
                 response.map(e => {
                     e.map(e => {
                         formattedTracks.push({
-                            url: `http://localhost:5001/${e.url}`,
+                            url: e.url,
                             title: `${e.title}`,
                             tags: ["music"]
                         });

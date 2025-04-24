@@ -105,6 +105,7 @@ export default {
         // INSERT INTO users_songs VALUES(1, 1);
         const query = 'INSERT INTO ?? VALUES(?, ?)';
         const result = await connection.query(query, [...values]);
+        console.log('result' + result)
 
         return result;
     },
