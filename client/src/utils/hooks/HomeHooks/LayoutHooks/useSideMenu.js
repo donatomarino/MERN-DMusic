@@ -19,6 +19,10 @@ export const useSideMenu = () => {
             toggleLogin(0);
             navigate('/login');
         }
+
+        const handleUploadSong = () => {
+
+        }
     
-        return {login, toggleComponent, handleSubmit}
+        return {login, toggleComponent, handleSubmit, handleUploadSong}
 }
